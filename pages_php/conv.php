@@ -3,6 +3,11 @@ $money = filter_input(INPUT_GET, "money", FILTER_VALIDATE_FLOAT);
 $currency = filter_input(INPUT_GET, "currency", FILTER_SANITIZE_STRING);
 $result = "";
 
+if ($money === null || $money === false || empty($currency)) {
+    header("Location: ../index.html");
+    exit;
+}
+
 switch ($currency) {
     case "USD":
         $result = number_format($money * 0.1876172607879925, 2, ",", ".");
